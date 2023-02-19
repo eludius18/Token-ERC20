@@ -11,8 +11,6 @@ const deploy: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const { deployments, getNamedAccounts } = hre;
   const { deployer } = await getNamedAccounts();
   const { deploy } = deployments;
-  const miniumPayment = 0;
-  const selectWinnerOwner = deployer;
 
 const _tokenName = "Eludius18 Token";
 const _tokenSymbol = "ETR";
@@ -27,8 +25,8 @@ const _tokenSymbol = "ETR";
         init: {
           methodName: "initialize",
           args: [
-            miniumPayment,
-            selectWinnerOwner
+            _tokenName,
+            _tokenSymbol
           ],
         },
       },
