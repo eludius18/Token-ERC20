@@ -11,10 +11,13 @@ const deploy: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const { deployments, getNamedAccounts } = hre;
   const { deployer } = await getNamedAccounts();
   const { deploy } = deployments;
-  const _tokenName = "Eludius18 Token";
-  const _tokenSymbol = "ETR";
+  const miniumPayment = 0;
+  const selectWinnerOwner = deployer;
 
-  const tokenERC20 = await deploy("TokenERC20", {
+const _tokenName = "Eludius18 Token";
+const _tokenSymbol = "ETR";
+
+  const tokenerc20 = await deploy("TokenERC20", {
     from: deployer,
     args: [],
     log: true,
@@ -24,8 +27,8 @@ const deploy: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
         init: {
           methodName: "initialize",
           args: [
-            _tokenName,
-            _tokenSymbol
+            miniumPayment,
+            selectWinnerOwner
           ],
         },
       },
@@ -33,21 +36,13 @@ const deploy: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     waitConfirmations: 10,
   });
 
-  console.log("TokenERC20 deployed at: ", tokenERC20.address);
-
-  const tokenERC20Deployed = await ethers.getContractAt(
-    "TokenERC20",
-    tokenERC20.address
-  );
-  
-  
+  console.log("TokenERC20 deployed at: ", tokenerc20.address);
   await delay(5000);
+  const tokenerc20Impl = await deployments.get("TokenERC20_Implementation");
+  
+  
   await run("verify:verify", {
-    address: tokenERC20Deployed.address,
-    constructorArguments: [
-      _tokenName,
-      _tokenSymbol
-    ],
+    address: tokenerc20Impl.address,
     contract: "contracts/TokenERC20.sol:TokenERC20",
   });
   

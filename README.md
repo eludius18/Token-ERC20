@@ -1,13 +1,17 @@
-# Sample Hardhat Project
+## Token ERC20 Upgradeable
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
-
-Try running some of the following tasks:
+# Fill .env file
 
 ```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.ts
+DEPLOYER_PRIVATE_KEY1 = ""
+RPC_URL = ""
+BSC_TESTNET_URL = ""
+
+ETHERSCAN_API_KEY = ""
+COINMARKETCAP_API_KEY = ""
+```
+# Deploy
+
+```shell
+npx hardhat deploy --network <blockchain-network> --tags TokenERC20
 ```

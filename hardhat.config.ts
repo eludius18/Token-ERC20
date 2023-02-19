@@ -75,7 +75,7 @@ const config: HardhatUserConfig = {
       url: "http://127.0.0.1:8545"
     },
     goerli: {
-      url: `https://goerli.infura.io/v3/${process.env.INFURA_PROJECT_KEY}`,
+      url: process.env.RPC_URL,
       chainId: 5,
       accounts: [`0x${process.env.DEPLOYER_PRIVATE_KEY1}`],
     },
