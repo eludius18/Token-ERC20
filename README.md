@@ -13,5 +13,7 @@ COINMARKETCAP_API_KEY = ""
 # Deploy
 
 ```shell
+npm install
 npx hardhat deploy --network <blockchain-network> --tags TokenERC20
+npx hardhat --network mumbai run scripts/mint.ts
 ```
